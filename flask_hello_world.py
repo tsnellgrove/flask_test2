@@ -88,5 +88,4 @@ if __name__ == '__main__':
 #		return render_template(output = session['buffer'])
 
 #	Consider adding a clean up routine that runs if the player hits a separate 'quit & close out' button
-#	Move flask docs to git and branch before implementing pseudo code test
 
