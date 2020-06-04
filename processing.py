@@ -1,8 +1,8 @@
 test_lst = []
 
 def func_test(base):
-	full = base + " Burt"
-	return full
+	full_line = base + ", Burt"
+	return full_line
 
 def do_calculation(color, test_lst):
 	exit_now = False

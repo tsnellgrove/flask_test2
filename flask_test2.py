@@ -25,20 +25,20 @@ def index():
         session["test_lst"] = []
     if "exit_now" not in session:
         session["exit_now"] = False
-    if "text1" not in session:
-        session["text1"] = "blank"
+    if 'player_command' not in session:
+        session['player_command'] = "blank"
 
     if request.method == "POST":
-        session["text1"] = str(request.form["text1"])
+        session['player_command'] = str(request.form['player_command'])
         if session["exit_now"]:
-            session.pop("text1", None)
+            session.pop('player_command', None)
             session.pop('count', None)
             session['test_lst'] = []
             session.pop('exit_now', None)
             print("Session Popped")
 
-    if 'text1' in session:
-        session["buffer_txt"], session["exit_now"], session["test_lst"] = do_calculation(session['text1'], session["test_lst"])
+    if 'player_command' in session:
+        session["buffer_txt"], session["exit_now"], session["test_lst"] = do_calculation(session['player_command'], session["test_lst"])
         session.modified = True
         print(session["exit_now"])
         print(session["test_lst"])
@@ -47,9 +47,9 @@ def index():
     return render_template('index.html', output = session["buffer_txt"], my_list = session["test_lst"])
 
 
-@app.route('/readme')
-def dark_castle():
-    return render_template('readme.html')  # render a template
+# @app.route('/readme')
+# def dark_castle():
+#    return render_template('readme.html')  # render a template
 
 
 # start the server with the 'run()' method
