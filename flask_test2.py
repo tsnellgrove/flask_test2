@@ -26,24 +26,25 @@ def index():
         session["count"] = 1
     if "test_lst" not in session:
         session["test_lst"] = []
-    if "exit_now" not in session:
-        session["exit_now"] = False
+    if "game_reset" not in session:
+        session["game_reset"] = True
     if 'player_command' not in session:
         session['player_command'] = "blank"
 
     if request.method == "POST":
         session['player_command'] = str(request.form['player_command'])
-        if session["exit_now"]:
-            session.pop('player_command', None)
-            session.pop('count', None)
-            session['test_lst'] = []
-            session.pop('exit_now', None)
-            print("Session Popped")
+        if session["game_reset"]:
+            session['player_command'] = "blank"
+#            session.pop('player_command', None)
+#            session.pop('count', None)
+#            session['test_lst'] = []
+#            session.pop('exit_now', None)
+#            print("Session Popped")
 
     if 'player_command' in session:
-        session["buffer_txt"], session["exit_now"], session["test_lst"] = do_calculation(session['player_command'], session["test_lst"])
+        session["buffer_txt"], session["game_reset"], session["test_lst"] = do_calculation(session['player_command'], session["test_lst"])
         session.modified = True
-        print(session["exit_now"])
+        print(session["game_reset"])
         print(session["test_lst"])
         print(session["count"])
 
@@ -62,6 +63,8 @@ if __name__ == '__main__':
 
 
 #	*** Pseudo Code ***
+
+# NEED TO SORT OUT 'QUIT' => 'GOODBYE' => 'ENTER PRIMARY COLOR'
 
 #	HTML Template in /Templates 
 #		TITLE "Dark Castle"
