@@ -65,6 +65,7 @@ if __name__ == '__main__':
 #	*** Pseudo Code ***
 
 # NEED TO SORT OUT 'QUIT' => 'GOODBYE' => 'ENTER PRIMARY COLOR'
+#		Solve with flashed message?
 
 #	HTML Template in /Templates 
 #		TITLE "Dark Castle"
