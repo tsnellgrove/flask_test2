@@ -35,11 +35,13 @@ def index():
         session['player_command'] = str(request.form['player_command'])
         if session["game_reset"]:
             session['player_command'] = "blank"
+            session['count'] = 1
 #            session.pop('player_command', None)
 #            session.pop('count', None)
-#            session['test_lst'] = []
-#            session.pop('exit_now', None)
-#            print("Session Popped")
+            session['test_lst'] = []
+            session['game_reset'] = False
+#            session.pop('game_reset', None)
+            print("Session reset")
 
     if 'player_command' in session:
         session["buffer_txt"], session["game_reset"], session["test_lst"] = do_calculation(session['player_command'], session["test_lst"])
@@ -63,6 +65,11 @@ if __name__ == '__main__':
 
 
 #	*** Pseudo Code ***
+
+# I need to step back and think more about how I really want this to work
+#	Wireframes would help... need to plan out exactly what should appear when the player starts and stops the game
+# Then after I really know what I want to do, solve it
+# Then before going on I need to take some flask YouTube tutorials and learn more about what is really possible
 
 # NEED TO SORT OUT 'QUIT' => 'GOODBYE' => 'ENTER PRIMARY COLOR'
 #		Solve with flashed message?
