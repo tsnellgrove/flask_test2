@@ -26,27 +26,27 @@ def index():
         session["count"] = 1
     if "test_lst" not in session:
         session["test_lst"] = []
-    if "game_reset" not in session:
-        session["game_reset"] = True
+    if "game_over" not in session:
+        session["game_over"] = True
     if 'player_command' not in session:
         session['player_command'] = "blank"
 
     if request.method == "POST":
         session['player_command'] = str(request.form['player_command'])
-        if session["game_reset"]:
+        if session["game_over"]:
             session['player_command'] = "blank"
             session['count'] = 1
 #            session.pop('player_command', None)
 #            session.pop('count', None)
             session['test_lst'] = []
-            session['game_reset'] = False
-#            session.pop('game_reset', None)
+            session['game_over'] = False
+#            session.pop('game_over', None)
             print("Session reset")
 
     if 'player_command' in session:
-        session["buffer_txt"], session["game_reset"], session["test_lst"] = do_calculation(session['player_command'], session["test_lst"])
+        session["buffer_txt"], session["game_over"], session["test_lst"] = do_calculation(session['player_command'], session["test_lst"])
         session.modified = True
-        print(session["game_reset"])
+        print(session["game_over"])
         print(session["test_lst"])
         print(session["count"])
 
@@ -64,7 +64,7 @@ if __name__ == '__main__':
     app.run(use_reloader=False, debug=True)
 
 
-#	*** Pseudo Code ***
+#	*** Ideas ***
 
 # I need to step back and think more about how I really want this to work
 #	Wireframes would help... need to plan out exactly what should appear when the player starts and stops the game
@@ -73,6 +73,21 @@ if __name__ == '__main__':
 
 # NEED TO SORT OUT 'QUIT' => 'GOODBYE' => 'ENTER PRIMARY COLOR'
 #		Solve with flashed message?
+
+#	Consider adding a clean up routine that runs if the player hits a separate 'quit & close out' button
+
+#	*** NEW CODED TO IMPLEMENT ***
+#	New idea: I need a 'Reset' button next to 'Submit'
+#	DONE: Change 'game_reset' => 'game_over'
+#	Create a new 'game_reset' variable
+#	HOW TO SET VARIABLE WITH BUTTON IN TEMPLATE???
+# Once 'game_over' == True, any Submit => "Press 'Reset' to start the game over"
+#	Reset sets 'game_reset' which resets all variables to initial states (maybe by popping all of them first ??)
+# On Submit, if game_over == False, provide content from dark_castle.py
+#	*** NEW CODED TO IMPLEMENT ***
+
+
+#	*** Pseudo Code ***
 
 #	HTML Template in /Templates 
 #		TITLE "Dark Castle"
@@ -102,5 +117,4 @@ if __name__ == '__main__':
 #			buffer, game_reset, <stateful dicts> = text_interpreter('player_command', <stateful dicts>)
 #		return render_template(output = session['buffer'])
 
-#	Consider adding a clean up routine that runs if the player hits a separate 'quit & close out' button
 
