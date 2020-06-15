@@ -1,8 +1,8 @@
 # Flask Test 2
 
 from flask import Flask, render_template, request, session, url_for
-#from flask_sqlalchemy import SQLAlchemy
-import sqlalchemy as SQLAlchemy # Is this right???
+# from flask_sqlalchemy import SQLAlchemy
+# import sqlalchemy as SQLAlchemy # Is this right???
 from datetime import datetime
 
 # import the Flask class from the flask module
@@ -12,19 +12,19 @@ from processing import do_calculation
 
 # create the application object
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-db = SQLAlchemy(app)
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+# db = SQLAlchemy(app)
 app.config["SECRET_KEY"] = "qpueuwrhuqjfn;nWOREJ"
 
-class Todo(db.Model):
-    id = db.Column(db.Integer, primary_key= True)
-    content = db.Column(db.String(200), nullable=False)
-    date_created = db.Column(db.DateTime, defualt =datetime.utcnow)
+# class Todo(db.Model):
+#    id = db.Column(db.Integer, primary_key= True)
+#    content = db.Column(db.String(200), nullable=False)
+#    date_created = db.Column(db.DateTime, defualt =datetime.utcnow)
 
-    def __repr__(self):
-        return '<Task %r>' % self.id
+#    def __repr__(self):
+#        return '<Task %r>' % self.id
 
-# NOTE: Alchemy DB not working yet - watch YouTube and troubleshoot from Pythonista forum
+# NOTE: Alchemy DB not working yet - commented out - maybe use REDIS instead?
 
 # use decorators to link the function to a url
 @app.route('/', methods=["GET", "POST"])
