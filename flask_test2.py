@@ -132,4 +132,5 @@ if __name__ == '__main__':
 #			buffer, game_reset, <stateful dicts> = text_interpreter('player_command', <stateful dicts>)
 #		return render_template(output = session['buffer'])
 
+#	Another idea - expose moves and score in index.html in table at top
 
