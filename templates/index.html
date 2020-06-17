@@ -23,9 +23,10 @@
     <p>{{ output }}</p>
     <br>
     <p>Enter your command:</p>
-    <form method="post" action=".">
+    <form method="POST" action=".">
         <p><input name="player_command" /></p>
-        <p><input type="submit" value="Submit" /></p>
+        <p><input type="submit" name="Submit" value="Submit" /></p>
+        <p><input type="submit" name="Restart" value="Restart" /></p>
     </form>
 </div>
 {% endblock %}

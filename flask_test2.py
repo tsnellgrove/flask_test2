@@ -57,6 +57,21 @@ def index():
             session['game_over'] = False
 #            session.pop('game_over', None)
             print("Session reset")
+#    else:
+#        return render_template('index.html', output = session["buffer_txt"], my_list = session["test_lst"])
+
+
+#def contact():
+#    if request.method == 'POST':
+#        if request.form['submit_button'] == 'Do Something':
+#            pass # do something
+#        elif request.form['submit_button'] == 'Do Something Else':
+#            pass # do something else
+#        else:
+#            pass # unknown
+#    elif request.method == 'GET':
+#        return render_template('contact.html', form=form)
+
 
     if 'player_command' in session:
         session["buffer_txt"], session["game_over"], session["test_lst"] = do_calculation(session['player_command'], session["test_lst"])
@@ -81,6 +96,11 @@ if __name__ == '__main__':
 
 #	*** Ideas ***
 
+#Jun 17, 2020 - Added Restart Button
+#		Next need to link behavior to button choice (see commented example) [see logic plan below]
+#		Also need to rethink program logic so that GET vs. POST if / else is deterministic (see commented example)
+
+
 # I need to step back and think more about how I really want this to work
 #	Wireframes would help... need to plan out exactly what should appear when the player starts and stops the game
 # Then after I really know what I want to do, solve it
@@ -91,7 +111,7 @@ if __name__ == '__main__':
 
 #	Consider adding a clean up routine that runs if the player hits a separate 'quit & close out' button
 
-#	*** NEW CODED TO IMPLEMENT ***
+#	*** NEW CODE TO IMPLEMENT ***
 #	New idea: I need a 'Reset' button next to 'Submit'
 #	DONE: Change 'game_reset' => 'game_over'
 #	Create a new 'game_reset' variable
