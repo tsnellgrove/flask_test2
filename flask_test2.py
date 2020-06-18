@@ -1,6 +1,6 @@
 # Flask Test 2
 
-from flask import Flask, render_template, request, session, url_for
+from flask import Flask, render_template, request, session, url_for, redirect
 # from flask_sqlalchemy import SQLAlchemy
 # import sqlalchemy as SQLAlchemy # Is this right???
 from datetime import datetime
@@ -57,6 +57,8 @@ def index():
             session['game_over'] = False
 #            session.pop('game_over', None)
             print("Session reset")
+#        return redirect('/')
+
 #    else:
 #        return render_template('index.html', output = session["buffer_txt"], my_list = session["test_lst"])
 
