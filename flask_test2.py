@@ -103,6 +103,11 @@ if __name__ == '__main__':
 #		Also need to rethink program logic so that GET vs. POST if / else is deterministic (see commented example)
 
 
+#Jun 19, 2020 - finished watching first flask video... found new video
+#		Maybe watch one more how to vid and then really need to sit down and work out my logic
+#		Also maybe need Flask how to book? Maybe structure of a book would really help?
+#		Yep - let's get the O'Reilly book via IBM
+
 # I need to step back and think more about how I really want this to work
 #	Wireframes would help... need to plan out exactly what should appear when the player starts and stops the game
 # Then after I really know what I want to do, solve it
