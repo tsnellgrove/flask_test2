@@ -32,6 +32,7 @@ app.config["SECRET_KEY"] = "qpueuwrhuqjfn;nWOREJ"
 #def home():
 #    return "Hello, Big World!"  # return a string
 
+
 @app.route('/')
 def index():
 
@@ -57,7 +58,7 @@ def index():
             session['game_over'] = False
 #            session.pop('game_over', None)
             print("Session reset")
-#        return redirect('/')
+#        return redirect('/') # change to redirect to "index" ?
 
 #    else:
 #        return render_template('index.html', output = session["buffer_txt"], my_list = session["test_lst"])
@@ -75,6 +76,7 @@ def index():
 #        return render_template('contact.html', form=form)
 
 
+
     if 'player_command' in session:
         session["buffer_txt"], session["game_over"], session["test_lst"] = do_calculation(session['player_command'], session["test_lst"])
         session.modified = True
@@ -90,10 +92,21 @@ def index():
 #    return render_template('readme.html')  # render a template
 
 
+#	Cool Code snipet - maybe use to redirect to Dark Castle page?
+@app.route("/<name>")
+def user(name):
+    return f"Hello {name}!"
+
+
+
+
+
 # start the server with the 'run()' method
 if __name__ == '__main__':
 #    app.run(debug=True)
     app.run(use_reloader=False, debug=True)
+
+
 
 
 #	*** Ideas ***
