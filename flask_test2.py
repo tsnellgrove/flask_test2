@@ -111,6 +111,8 @@ if __name__ == '__main__':
 
 #	*** Ideas ***
 
+#Booststrap next
+
 #Jun 17, 2020 - Added Restart Button
 #		Next need to link behavior to button choice (see commented example) [see logic plan below]
 #		Also need to rethink program logic so that GET vs. POST if / else is deterministic (see commented example)
