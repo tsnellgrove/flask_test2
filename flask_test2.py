@@ -33,7 +33,7 @@ app.config["SECRET_KEY"] = "qpueuwrhuqjfn;nWOREJ"
 #    return "Hello, Big World!"  # return a string
 
 
-@app.route('/')
+#@app.route('/')
 def index():
 
     if "count" in session:
@@ -49,6 +49,8 @@ def index():
 
     if request.method == "POST":
         session['player_command'] = str(request.form['player_command'])
+        session["buffer_txt"], session["game_over"], session["test_lst"] = do_calculation(session['player_command'], session["test_lst"])
+        session.modified = True
         if session["game_over"]:
             session['player_command'] = "blank"
             session['count'] = 1
@@ -59,6 +61,10 @@ def index():
 #            session.pop('game_over', None)
             print("Session reset")
 #        return redirect('/') # change to redirect to "index" ?
+
+#    else:
+#        return render_template('index.html', output = session["buffer_txt"], my_list = session["test_lst"])
+
 
 #    else:
 #        return render_template('index.html', output = session["buffer_txt"], my_list = session["test_lst"])
@@ -77,14 +83,17 @@ def index():
 
 
 
-    if 'player_command' in session:
-        session["buffer_txt"], session["game_over"], session["test_lst"] = do_calculation(session['player_command'], session["test_lst"])
-        session.modified = True
-        print(session["game_over"])
-        print(session["test_lst"])
-        print(session["count"])
+# Jun 24 Comment
+#    if 'player_command' in session:
+#        session["buffer_txt"], session["game_over"], session["test_lst"] = do_calculation(session['player_command'], session["test_lst"])
+#        session.modified = True
+#        print(session["game_over"])
+#        print(session["test_lst"])
+#        print(session["count"])
 
+# Jun 24 Comment
     return render_template('index.html', output = session["buffer_txt"], my_list = session["test_lst"])
+
 
 
 # @app.route('/readme')
