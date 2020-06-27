@@ -3,7 +3,7 @@
 from flask import Flask, render_template, request, session, url_for, redirect
 # from flask_sqlalchemy import SQLAlchemy
 # import sqlalchemy as SQLAlchemy # Is this right???
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # import the Flask class from the flask module
 # from flask import Flask, render_template, request, session
@@ -15,6 +15,7 @@ app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 # db = SQLAlchemy(app)
 app.config["SECRET_KEY"] = "qpueuwrhuqjfn;nWOREJ"
+app.permanent_session_lifetime = timedelta(minutes = 120)
 
 # class Todo(db.Model):
 #    id = db.Column(db.Integer, primary_key= True)
@@ -48,9 +49,10 @@ def index():
         session['player_command'] = "blank"
 
     if request.method == "POST":
+        session.permanent = True
         session['player_command'] = str(request.form['player_command'])
-        session["buffer_txt"], session["game_over"], session["test_lst"] = do_calculation(session['player_command'], session["test_lst"])
-        session.modified = True
+#        session["buffer_txt"], session["game_over"], session["test_lst"] = do_calculation(session['player_command'], session["test_lst"])
+#        session.modified = True
         if session["game_over"]:
             session['player_command'] = "blank"
             session['count'] = 1
@@ -84,12 +86,12 @@ def index():
 
 
 # Jun 24 Comment
-#    if 'player_command' in session:
-#        session["buffer_txt"], session["game_over"], session["test_lst"] = do_calculation(session['player_command'], session["test_lst"])
-#        session.modified = True
-#        print(session["game_over"])
-#        print(session["test_lst"])
-#        print(session["count"])
+    if 'player_command' in session:
+        session["buffer_txt"], session["game_over"], session["test_lst"] = do_calculation(session['player_command'], session["test_lst"])
+        session.modified = True
+        print(session["game_over"])
+        print(session["test_lst"])
+        print(session["count"])
 
 # Jun 24 Comment
     return render_template('index.html', output = session["buffer_txt"], my_list = session["test_lst"])
