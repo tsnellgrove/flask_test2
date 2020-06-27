@@ -1,6 +1,6 @@
 # Flask Test 2
 
-from flask import Flask, render_template, request, session, url_for, redirect
+from flask import Flask, render_template, request, session, url_for, redirect, flash
 # from flask_sqlalchemy import SQLAlchemy
 # import sqlalchemy as SQLAlchemy # Is this right???
 from datetime import datetime, timedelta
@@ -54,6 +54,8 @@ def index():
 #        session["buffer_txt"], session["game_over"], session["test_lst"] = do_calculation(session['player_command'], session["test_lst"])
 #        session.modified = True
         if session["game_over"]:
+            count = session['count']
+            flash(f"Your game has ended - press 'Restart' to play again {count}", "info")
             session['player_command'] = "blank"
             session['count'] = 1
 #            session.pop('player_command', None)
