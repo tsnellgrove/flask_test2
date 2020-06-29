@@ -125,6 +125,7 @@ if __name__ == '__main__':
 #	*** Ideas ***
 
 #Finished flash tutuorial... next thing to do is to sort out my logic and get my test code really working.. then after that, time for Alchemy tutorial
+# Making progress on the pseudo code
 
 #Booststrap next
 
