@@ -20,26 +20,26 @@ def index():
     if "game_over" not in session:
         session["game_over"] = False
         session['player_command'] = "blank"
-        flash(f"Welcome to Dark Castle Tester - please enter a primary color", "info")
-        return render_template('index.html', output = session["buffer_txt"], my_list = session["test_lst"])
-
-# temp test code
-    if "count" in session:
-        session["count"] = session.get("count") + 1
-    else:
+        session['buffer_txt'] = "blank"
+        session['test_lst'] = []
+        session['restart'] = False
         session["count"] = 1
-    if "test_lst" not in session:
-        session["test_lst"] = []
-
+        flash(f"Welcome to Dark Castle Tester - please enter a primary color", "info")
+#        return render_template('index.html', output = session["buffer_txt"], my_list = session["test_lst"])
 
     if request.method == "POST":
         session.permanent = True
-        session['player_command'] = str(request.form['player_command'])
+        if request.form['submit_button'] == 'Submit':
+            session['player_command'] = str(request.form['player_command'])
+            session["count"] = session.get("count") + 1
+        if request.form['submit_button'] == 'Restart':
+            session['restart'] = True
+            session.pop('game_over', None)
 #        session["buffer_txt"], session["game_over"], session["test_lst"] = do_calculation(session['player_command'], session["test_lst"])
 #        session.modified = True
         if session["game_over"]:
             count = session['count']
-            flash(f"Your game has ended - press 'Restart' to play again {count}", "info")
+            flash(f"Your game has ended after  {count} entries - press 'Restart' to play again", "info")
             session['player_command'] = "blank"
             session['count'] = 1
 #            session.pop('player_command', None)
@@ -47,12 +47,15 @@ def index():
             session['test_lst'] = []
             session['game_over'] = False
 #            session.pop('game_over', None)
+#            session.pop('game_over', None)
             print("Session reset")
 #        return redirect('/') # change to redirect to "index" ?
 
 #    else:
 #        return render_template('index.html', output = session["buffer_txt"], my_list = session["test_lst"])
 
+
+#Jul 1: Buttons working but need to sort out restart intentions - doesn't work to pop
 
 #def contact():
 #    if request.method == 'POST':
