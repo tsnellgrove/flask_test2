@@ -12,43 +12,76 @@ app.permanent_session_lifetime = timedelta(minutes = 120)
 
 def index():
 
+    if "id" not in session:
+        session['id'] = 123
+        session["game_over"] = False
+        session['player_command'] = "blank"
+        session['buffer_txt'] = ""
+        session['test_lst'] = []
+        session['restart'] = False
+        session["count"] = 0
+        session.permanent = True
+        flash(f"Welcome to Dark Castle Tester - please enter a primary color", "info")
+
+
+#    if request.method == "GET":
+#        return render_template('index.html', output = session["buffer_txt"], my_list = session["test_lst"])
+
+    if request.method == "POST":
+
+        if request.form['submit_button'] == 'Submit':
+            session['player_command'] = str(request.form['player_command'])
+            print('player hit submit')
+            session["count"] = session.get("count") + 1
+        if request.form['submit_button'] == 'Restart':
+            session['restart'] = True
+            print('PLAYER HIT RESTART')
+
+        if session['restart']:
+            session.pop('id', None)
+            flash(f"Welcome to Dark Castle Tester - please enter a primary color", "info")
+
+        elif not session["game_over"]:
+            session["buffer_txt"], session["game_over"], session["test_lst"] = do_calculation(session['player_command'], session["test_lst"])
+            session.modified = True
+#            return render_template('index.html', output = session["buffer_txt"], my_list = session["test_lst"])
+
+        else: # if session['game_over'] == True
+            count = session['count']
+            flash(f"Your game has ended after  {count} entries - press 'Restart' to play again", "info")
+
+    else:
+        print('How did we get here?')
+
+    return render_template('index.html', output = session["buffer_txt"], my_list = session["test_lst"])
+
+if __name__ == '__main__':
+    app.run(use_reloader=False, debug=True)
+
+
+
+
+
+
+# OLD COMMENTED OUT
+
 
 # for testing
 #    session.pop('game_over', None)
 
 # next need to test by getting restart button value and then popping game over
-    if "game_over" not in session:
-        session["game_over"] = False
-        session['player_command'] = "blank"
-        session['buffer_txt'] = "blank"
-        session['test_lst'] = []
-        session['restart'] = False
-        session["count"] = 1
-        flash(f"Welcome to Dark Castle Tester - please enter a primary color", "info")
+
 #        return render_template('index.html', output = session["buffer_txt"], my_list = session["test_lst"])
 
-    if request.method == "POST":
-        session.permanent = True
-        if request.form['submit_button'] == 'Submit':
-            session['player_command'] = str(request.form['player_command'])
-            session["count"] = session.get("count") + 1
-        if request.form['submit_button'] == 'Restart':
-            session['restart'] = True
-            session.pop('game_over', None)
 #        session["buffer_txt"], session["game_over"], session["test_lst"] = do_calculation(session['player_command'], session["test_lst"])
 #        session.modified = True
-        if session["game_over"]:
-            count = session['count']
-            flash(f"Your game has ended after  {count} entries - press 'Restart' to play again", "info")
-            session['player_command'] = "blank"
-            session['count'] = 1
+
 #            session.pop('player_command', None)
 #            session.pop('count', None)
-            session['test_lst'] = []
-            session['game_over'] = False
+
 #            session.pop('game_over', None)
 #            session.pop('game_over', None)
-            print("Session reset")
+
 #        return redirect('/') # change to redirect to "index" ?
 
 #    else:
@@ -70,20 +103,34 @@ def index():
 
 
 
-    if 'player_command' in session:
-        session["buffer_txt"], session["game_over"], session["test_lst"] = do_calculation(session['player_command'], session["test_lst"])
-        session.modified = True
-        print(session["game_over"])
-        print(session["test_lst"])
-        print(session["count"])
-
-    return render_template('index.html', output = session["buffer_txt"], my_list = session["test_lst"])
+# NEW COMMENTED OUT (July 2, 2020)
 
 
+#        if request.form['submit_button'] == 'Submit':
+#            session['player_command'] = str(request.form['player_command'])
+#            session["count"] = session.get("count") + 1
+#        if request.form['submit_button'] == 'Restart':
+#            session['restart'] = True
+#            session.pop('game_over', None)
+#        if session["game_over"]:
+#            count = session['count']
+#            flash(f"Your game has ended after  {count} entries - press 'Restart' to play again", "info")
+#            session['player_command'] = "blank"
+#            session['count'] = 1
+#            session['test_lst'] = []
+#            session['game_over'] = False
+#            print("Session reset")
 
-if __name__ == '__main__':
-    app.run(use_reloader=False, debug=True)
 
+
+#    if 'player_command' in session:
+#        session["buffer_txt"], session["game_over"], session["test_lst"] = do_calculation(session['player_command'], session["test_lst"])
+#        session.modified = True
+#        print(session["game_over"])
+#        print(session["test_lst"])
+#        print(session["count"])
+
+#    return render_template('index.html', output = session["buffer_txt"], my_list = session["test_lst"])
 
 
 
