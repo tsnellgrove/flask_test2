@@ -31,11 +31,13 @@ def index():
 
         if request.form['submit_button'] == 'Submit':
             session['player_command'] = str(request.form['player_command'])
-            print('player hit submit')
-            session["count"] = session.get("count") + 1
+#            print('player hit submit')
+            session["count"] = session["count"] + 1
+#            session["count"] = session.get("count") + 1
+            print(session['count'])
         if request.form['submit_button'] == 'Restart':
             session['restart'] = True
-            print('PLAYER HIT RESTART')
+#            print('PLAYER HIT RESTART')
 
         if session['restart']:
             session.pop('id', None)
