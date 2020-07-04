@@ -65,8 +65,9 @@ if __name__ == '__main__':
 
 
 
-# OLD COMMENTED OUT
-
+# Next Steps
+# I seem to have a web server issue? Code keeps hanging after 10 - 12 entries
+# Signed up for a pythonanywhere account today to try a differet web server
 
 # for testing
 #    session.pop('game_over', None)
