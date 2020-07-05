@@ -67,7 +67,8 @@ if __name__ == '__main__':
 
 # Next Steps
 # I seem to have a web server issue? Code keeps hanging after 10 - 12 entries
-# Signed up for a pythonanywhere account today to try a differet web server
+# July 4: Signed up for a pythonanywhere account today to try a differet web server
+# July 5: Pushed flask_test2 to GitHub and then manually cloned it to my pythonanywhere account
 
 # for testing
 #    session.pop('game_over', None)
