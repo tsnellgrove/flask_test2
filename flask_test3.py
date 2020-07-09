@@ -71,6 +71,7 @@ if __name__ == '__main__':
 # July 5: Pushed flask_test2 to GitHub and then manually cloned it to my pythonanywhere account
 # July 7: Started working on basch on pythonanywhere
 # July 8: Yet more pythonanywhere troubleshooting
+# July 9: got flask_test3.py running publicly on pythonanywhere!!
 
 # for testing
 #    session.pop('game_over', None)
