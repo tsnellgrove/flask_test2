@@ -36,24 +36,6 @@
         <p><input type="submit" name="submit_button" value="Restart" /></p>
     </form>
 </div>
-
-{% for x in range(4) %}
-    {% if x % 2 == 1 %}
-        <p>{{x}}</p>
-    {% endif %}
-{% endfor %}
-
-{% for x in my_list %}
-    <p>{{x}}</p>
-    {% if x == 'red' %}
-        <h3>RED</h3>
-    {% elif x == 'blue' %}
-        <h2>BLUE</h2>
-    {% else %}
-        <h4>NOT red or blue</h4>
-    {% endif %}
-{% endfor %}
-
 {% endblock %}
 
 
