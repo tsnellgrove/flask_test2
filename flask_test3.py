@@ -72,6 +72,14 @@ if __name__ == '__main__':
 # July 7: Started working on basch on pythonanywhere
 # July 8: Yet more pythonanywhere troubleshooting
 # July 9: got flask_test3.py running publicly on pythonanywhere!!
+# July 10: Progress! I have flask_test3.py running on pythonanywhere and i have a git update process defined. Here's how it works:
+	# 1) Update code on my iPad in Pythonista
+	# 2) Commit and auto-push to GitHub using Working Copy
+	# 3) 'git pull' from the bash console on pythonanywhere: https://www.pythonanywhere.com/user/Tsnellgrove/consoles/16388612/
+	# 4) Reload the website from here: https://www.pythonanywhere.com/user/Tsnellgrove/webapps/#tab_id_tsnellgrove_pythonanywhere_com
+
+# NEXT GOAL: document flask resources and start planning the re-write of Dark Castle for Flask
+	
 
 # for testing
 #    session.pop('game_over', None)
