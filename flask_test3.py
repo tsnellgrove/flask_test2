@@ -68,7 +68,7 @@ if __name__ == '__main__':
 # July 10: Progress! I have flask_test3.py running on pythonanywhere and i have a git update process defined. Here's how it works:
 	# 1) Update code on my iPad in Pythonista
 	# 2) Commit and auto-push to GitHub using Working Copy
-	# 3) 'git pull' from the bash console on pythonanywhere: https://www.pythonanywhere.com/user/Tsnellgrove/consoles/16388612/
+	# 3) 'git pull https://github.com/tsnellgrove/flask_test2' from the bash console on pythonanywhere: https://www.pythonanywhere.com/user/Tsnellgrove/consoles/16388612/
 	# 4) Reload the website from here: https://www.pythonanywhere.com/user/Tsnellgrove/webapps/#tab_id_tsnellgrove_pythonanywhere_com
 
 # Jul 11: Flask resources
