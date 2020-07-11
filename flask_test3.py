@@ -24,20 +24,14 @@ def index():
         flash(f"Welcome to Dark Castle Tester - please enter a primary color", "info")
 
 
-#    if request.method == "GET":
-#        return render_template('index.html', output = session["buffer_txt"], my_list = session["test_lst"])
-
     if request.method == "POST":
 
         if request.form['submit_button'] == 'Submit':
             session['player_command'] = str(request.form['player_command'])
-#            print('player hit submit')
             session["count"] = session["count"] + 1
-#            session["count"] = session.get("count") + 1
             print(session['count'])
         if request.form['submit_button'] == 'Restart':
             session['restart'] = True
-#            print('PLAYER HIT RESTART')
 
         if session['restart']:
             session.pop('id', None)
@@ -46,7 +40,6 @@ def index():
         elif not session["game_over"]:
             session["buffer_txt"], session["game_over"], session["test_lst"] = do_calculation(session['player_command'], session["test_lst"])
             session.modified = True
-#            return render_template('index.html', output = session["buffer_txt"], my_list = session["test_lst"])
 
         else: # if session['game_over'] == True
             count = session['count']
@@ -78,10 +71,48 @@ if __name__ == '__main__':
 	# 3) 'git pull' from the bash console on pythonanywhere: https://www.pythonanywhere.com/user/Tsnellgrove/consoles/16388612/
 	# 4) Reload the website from here: https://www.pythonanywhere.com/user/Tsnellgrove/webapps/#tab_id_tsnellgrove_pythonanywhere_com
 
-# NEXT GOAL: document flask resources and start planning the re-write of Dark Castle for Flask
+# Jul 11: Flask resources
+	#	Bootstrap: https://getbootstrap.com/docs/3.4/
+	# Clear form after submitted: https://stackoverflow.com/questions/31945329/clear-valid-form-after-it-is-submitted
+	# Git Branching: https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell
+	# *** Tech With Tim - Flask youtube tutorials ***: https://youtu.be/mqhxxeeTbu0
 	
 
-# for testing
+# Jul 11: Pythonanywhere resources:
+	#	Git at the command line: https://dont-be-afraid-to-commit.readthedocs.io/en/latest/git/commandlinegit.html
+	# Python scritp to web site tutorial: https://blog.pythonanywhere.com/169/
+	# Basic vi commands: https://www.cs.colostate.edu/helpdocs/vi.html
+	# Syncing GitHub with Pythonanywhere: https://stackoverflow.com/questions/48047123/syncing-github-with-pythonanywhere
+	# *** Setting up Flask on Pythonanywhere tutorial ***: https://help.pythonanywhere.com/pages/Flask/
+	# my pythonanywhere site: http://tsnellgrove.pythonanywhere.com
+	
+
+# NEXT: Start planning the re-write of Dark Castle for Flask
+	
+
+
+
+
+
+
+
+# CODE CLEANUP
+
+#    if request.method == "GET":
+#        return render_template('index.html', output = session["buffer_txt"], my_list = session["test_lst"])
+
+#            print('player hit submit')
+
+#            session["count"] = session.get("count") + 1
+
+#            print('PLAYER HIT RESTART')
+
+#            return render_template('index.html', output = session["buffer_txt"], my_list = session["test_lst"])
+
+
+
+# FOR TESTING
+
 #    session.pop('game_over', None)
 
 # next need to test by getting restart button value and then popping game over
@@ -103,7 +134,8 @@ if __name__ == '__main__':
 #        return render_template('index.html', output = session["buffer_txt"], my_list = session["test_lst"])
 
 
-#Jul 1: Buttons working but need to sort out restart intentions - doesn't work to pop
+# JUL 1: Buttons working but need to sort out restart intentions - doesn't work to pop
+
 
 #def contact():
 #    if request.method == 'POST':
